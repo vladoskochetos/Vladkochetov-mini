@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       NEXT_PUBLIC_SITE_URL: https://vladoskochetos.github.io/Vladkochetov-mini
       NEXT_PUBLIC_SITE_BASE_PATH: /Vladkochetov-mini
@@ -45,6 +46,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: build
     steps:
       - name: Deploy to GitHub Pages
