@@ -1,0 +1,4 @@
+"use client";
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "motion/react";
+export function CustomCursor() { const [enabled,setEnabled]=useState(false); const x=useSpring(useMotionValue(-40),{stiffness:500,damping:32}); const y=useSpring(useMotionValue(-40),{stiffness:500,damping:32}); useEffect(()=>{const media=window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)");const set=()=>setEnabled(media.matches);set();media.addEventListener("change",set);const move=(e:MouseEvent)=>{x.set(e.clientX);y.set(e.clientY)};window.addEventListener("mousemove",move);return()=>{media.removeEventListener("change",set);window.removeEventListener("mousemove",move)}},[x,y]); return enabled?<motion.div aria-hidden className="cursor-dot" style={{x,y}}/>:null; }
