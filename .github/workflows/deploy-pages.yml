@@ -35,11 +35,11 @@ jobs:
       - name: Build static site
         run: npm run build:github-pages
       - name: Disable Jekyll
-        run: touch dist/client/.nojekyll
+        run: touch out/.nojekyll
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+          path: out
 
   deploy:
     environment:
